@@ -6,7 +6,7 @@ target 'instagram-assignment' do
   use_frameworks!
 
   # Pods for instagram-assignment
-
+  pod 'Parse'
   target 'instagram-assignmentTests' do
     inherit! :search_paths
     # Pods for testing
