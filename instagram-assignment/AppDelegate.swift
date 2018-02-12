@@ -24,6 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://cst495-sasanchez-instagram.herokuapp.com/parse"
             })
         )
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("didLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
+            print("Logout notification received")
+            // TODO: Logout the User
+            // TODO: Load and show the login view controller
+            self.logOut()
+        }
+        
+        if PFUser.current() != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            // view controller currently being set in Storyboard as default will be overridden
+            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "homeFeedNavCont")
+        }
         return true
     }
 
@@ -49,6 +62,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func logOut() {
+        // Logout the current user
+        PFUser.logOutInBackground(block: { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Successful loggout")
+                // Load and show the login view controller
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginVC")
+                self.window?.rootViewController = loginViewController
+            }
+        })
+    }
 }
 

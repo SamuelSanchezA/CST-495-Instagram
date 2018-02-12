@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
         PFUser.logInWithUsername(inBackground: usernameField.text!, password: passwordField.text!) { (user, error) in
             if user != nil{
                 print("You're logged in")
+                self.performSegue(withIdentifier: "loginSuccess", sender: LoginViewController.self)
             }
             else{
                 print(error?.localizedDescription ?? "")
@@ -44,11 +45,15 @@ class LoginViewController: UIViewController {
         newUser.signUpInBackground { (success, error) in
             if success{
                 print("Signup good!")
+                self.performSegue(withIdentifier: "loginSuccess", sender: LoginViewController.self)
             }
             else{
                 print(error?.localizedDescription ?? "")
             }
         }
+    }
+    @IBAction func keyboardDown(_ sender: Any) {
+        view.endEditing(true)
     }
 }
 

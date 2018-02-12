@@ -16,6 +16,7 @@
 		7E16D215202FFECF000DAF25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E16D213202FFECF000DAF25 /* LaunchScreen.storyboard */; };
 		7E16D220202FFECF000DAF25 /* instagram_assignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E16D21F202FFECF000DAF25 /* instagram_assignmentTests.swift */; };
 		7E16D22B202FFECF000DAF25 /* instagram_assignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E16D22A202FFECF000DAF25 /* instagram_assignmentUITests.swift */; };
+		7E16D23C2030C325000DAF25 /* HomeFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E16D23B2030C325000DAF25 /* HomeFeedViewController.swift */; };
 		CC789F6BA4A74162CD768C64 /* Pods_instagram_assignmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45452F5194BF8DBBBB37B9C7 /* Pods_instagram_assignmentUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		7E16D226202FFECF000DAF25 /* instagram-assignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "instagram-assignmentUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E16D22A202FFECF000DAF25 /* instagram_assignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instagram_assignmentUITests.swift; sourceTree = "<group>"; };
 		7E16D22C202FFECF000DAF25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E16D23B2030C325000DAF25 /* HomeFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedViewController.swift; sourceTree = "<group>"; };
 		86F764BC94578057C2B09AAB /* Pods_instagram_assignmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagram_assignmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D75AFAB7630AD2555C9E73 /* Pods_instagram_assignment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagram_assignment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4B9613201625A6A0ED0269D /* Pods-instagram-assignmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram-assignmentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instagram-assignmentUITests/Pods-instagram-assignmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				7E16D20C202FFECF000DAF25 /* LoginViewController.swift */,
+				7E16D23B2030C325000DAF25 /* HomeFeedViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 			files = (
 				7E16D20D202FFECF000DAF25 /* LoginViewController.swift in Sources */,
 				7E16D20B202FFECF000DAF25 /* AppDelegate.swift in Sources */,
+				7E16D23C2030C325000DAF25 /* HomeFeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
