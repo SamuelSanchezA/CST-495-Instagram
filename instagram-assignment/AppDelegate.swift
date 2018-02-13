@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if PFUser.current() != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             // view controller currently being set in Storyboard as default will be overridden
-            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "homeFeedNavCont")
+            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabCont")
         }
         return true
     }

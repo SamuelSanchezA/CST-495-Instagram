@@ -7,6 +7,7 @@ target 'instagram-assignment' do
 
   # Pods for instagram-assignment
   pod 'Parse'
+  pod 'RSKPlaceholderTextView'
   target 'instagram-assignmentTests' do
     inherit! :search_paths
     # Pods for testing
