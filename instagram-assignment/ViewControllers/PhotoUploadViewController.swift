@@ -7,23 +7,18 @@
 //
 
 import UIKit
-import RSKPlaceholderTextView
+import Parse
 
 class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var photoToUploadImageView: UIImageView!
-    
-    
     @IBOutlet weak var captionTextView: UITextView!
     
     var vc: UIImagePickerController!
+    var imageToUpload: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let captionTextView2 = RSKPlaceholderTextView(frame: CGRect(x: captionTextView.frame.origin.x, y: captionTextView.frame.origin.y, width: self.captionTextView.frame.width, height: self.captionTextView.frame.height))
-        captionTextView2.placeholder = "Caption"
-        captionTextView = captionTextView2
         
         vc = UIImagePickerController()
         vc.delegate = self
@@ -50,6 +45,7 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         //let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         let editedImage = resize(image: originalImage, newSize: CGSize(width: 300, height: 300))
+        imageToUpload = editedImage
         // Do something with the images (based on your use case)
         photoToUploadImageView.image = editedImage
         
@@ -73,6 +69,21 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         UIGraphicsEndImageContext()
         return newImage!
     }
+    
+    @IBAction func uploadImage(_ sender: Any) {
+        Post.postUserImage(image: photoToUploadImageView.image, withCaption: captionTextView.text) {
+            (success, error) in
+            if success{
+                print("Image upload successful!")
+                
+            }
+            else{
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 

@@ -7,18 +7,36 @@
 //
 
 import UIKit
+import Parse
 
 class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
     @IBOutlet weak var postTableView: UITableView!
     
+    var posts: [Post] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         super.title = "Home Feed"
         self.postTableView.dataSource = self
         self.postTableView.delegate = self
+        fetchPosts()
         // Do any additional setup after loading the view.
+    }
+    
+    func fetchPosts(){
+        let query = Post.query()
+        query?.findObjectsInBackground(block: { (posts, error) in
+            if(posts != nil){
+                self.posts = posts as! [Post]
+                print(self.posts)
+                self.postTableView.reloadData()
+            }
+            else{
+                print(error?.localizedDescription)
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,11 +50,24 @@ class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        print(posts.count)
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
+        let post = posts[indexPath.row]
+        cell.postCaptionLabel.text = post.caption
+        
+        if let extractedImage = post.media as! PFFile?{
+            extractedImage.getDataInBackground({ (imageData: Data?, error: Error?) -> Void in
+                let image = UIImage(data: imageData!)
+                if image != nil {
+                    cell.postImageView.image = image
+                }
+            })
+        }
+        
         return cell
     }
     
