@@ -58,15 +58,8 @@ class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
         let post = posts[indexPath.row]
         cell.postCaptionLabel.text = post.caption
-        
-        if let extractedImage = post.media as! PFFile?{
-            extractedImage.getDataInBackground({ (imageData: Data?, error: Error?) -> Void in
-                let image = UIImage(data: imageData!)
-                if image != nil {
-                    cell.postImageView.image = image
-                }
-            })
-        }
+        cell.postImageView.file = post.media
+        cell.postImageView.loadInBackground()
         
         return cell
     }

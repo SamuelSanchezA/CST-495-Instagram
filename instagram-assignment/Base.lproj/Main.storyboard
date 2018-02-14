@@ -103,42 +103,40 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="356" id="lc8-Vg-ukA" customClass="PostCell" customModule="instagram_assignment" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="356"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="417" id="lc8-Vg-ukA" customClass="PostCell" customModule="instagram_assignment" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="417"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lc8-Vg-ukA" id="Gpv-2B-5BX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="355.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="416.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lz9-Ir-qnh">
-                                                    <rect key="frame" x="57" y="5" width="300" height="300"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lz9-Ir-qnh" customClass="PFImageView">
+                                                    <rect key="frame" x="0.0" y="5" width="414" height="300"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="lz9-Ir-qnh" secondAttribute="height" multiplier="1:1" id="3Ef-sr-7Md"/>
-                                                        <constraint firstAttribute="height" constant="300" id="kdi-tc-piW"/>
-                                                        <constraint firstAttribute="width" constant="300" id="vFH-qC-2Ph"/>
+                                                        <constraint firstAttribute="height" constant="300" id="Sfh-87-aXS"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y64-2r-fn1">
-                                                    <rect key="frame" x="8" y="313" width="121" height="34.666666666666686"/>
+                                                    <rect key="frame" x="8" y="369" width="121" height="37.666666666666686"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Y64-2r-fn1" secondAttribute="bottom" constant="8" id="1Fc-5d-Hsa"/>
-                                                <constraint firstItem="lz9-Ir-qnh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gpv-2B-5BX" secondAttribute="leading" constant="5" id="6Pp-IK-QOn"/>
+                                                <constraint firstItem="lz9-Ir-qnh" firstAttribute="leading" secondItem="Gpv-2B-5BX" secondAttribute="leading" id="6Pp-IK-QOn"/>
                                                 <constraint firstItem="lz9-Ir-qnh" firstAttribute="centerX" secondItem="Gpv-2B-5BX" secondAttribute="centerX" id="IPx-n4-WfP"/>
-                                                <constraint firstItem="Y64-2r-fn1" firstAttribute="top" secondItem="lz9-Ir-qnh" secondAttribute="bottom" constant="8" id="JR4-ue-Q6f"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Y64-2r-fn1" secondAttribute="trailing" constant="8" id="PTg-I7-M3E"/>
                                                 <constraint firstItem="lz9-Ir-qnh" firstAttribute="top" secondItem="Gpv-2B-5BX" secondAttribute="top" constant="5" id="aIC-vl-UDS"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lz9-Ir-qnh" secondAttribute="trailing" constant="5" id="nLY-eR-RA8"/>
+                                                <constraint firstAttribute="bottom" secondItem="Y64-2r-fn1" secondAttribute="bottom" constant="10" id="eE4-N0-ImV"/>
+                                                <constraint firstAttribute="trailing" secondItem="lz9-Ir-qnh" secondAttribute="trailing" id="nLY-eR-RA8"/>
+                                                <constraint firstItem="Y64-2r-fn1" firstAttribute="top" secondItem="lz9-Ir-qnh" secondAttribute="bottom" constant="64" id="z7W-5n-aH5"/>
                                                 <constraint firstItem="Y64-2r-fn1" firstAttribute="leading" secondItem="Gpv-2B-5BX" secondAttribute="leading" constant="8" id="zeU-5C-BLf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="postCaptionLabel" destination="Y64-2r-fn1" id="7va-8D-2b5"/>
-                                            <outlet property="postImageView" destination="lz9-Ir-qnh" id="790-LC-z9O"/>
+                                            <outlet property="postImageView" destination="lz9-Ir-qnh" id="oqT-qR-sOP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
