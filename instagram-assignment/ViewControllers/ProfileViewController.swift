@@ -8,12 +8,12 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var userLable: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
-    
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userPostsCollectionView: UICollectionView!
     
     var userPosts: [Post] = []
@@ -22,18 +22,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.viewDidLoad()
         userPostsCollectionView.dataSource = self
         userPostsCollectionView.delegate = self
+        let layout = userPostsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = layout.minimumInteritemSpacing
+        let cellsPerLine : CGFloat = 3
+        let interItemSpacingTotal = layout.minimumInteritemSpacing * (cellsPerLine - 1)
+        let width = userPostsCollectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
+        layout.itemSize = CGSize(width: width, height: width)
         fetchUserPosts()
-        // Do any additional setup after loading the view.
     }
 
     func fetchUserPosts(){
+        PFUser.getCurrentUserInBackground().continueOnSuccessWith { (user) -> Any? in
+            self.usernameLabel.text = user.result?.username
+        }
         let query = Post.query()
         query?.whereKey("author", equalTo: PFUser.current())
         query?.order(byDescending: "_created_at")
         query?.findObjectsInBackground(block: { (posts, error) in
             if(posts != nil){
                 self.userPosts = posts as! [Post]
-                print(self.userPosts)
                 self.userPostsCollectionView.reloadData()
                 //self.refreshControl.endRefreshing()
             }
@@ -41,6 +49,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 print(error?.localizedDescription)
             }
         })
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,7 +70,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         return cell
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! DetailPostViewController
+        
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -38,6 +38,7 @@ class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         query?.order(byDescending: "_created_at")
         query?.findObjectsInBackground(block: { (posts, error) in
             if(posts != nil){
+                
                 self.posts = posts as! [Post]
                 self.postTableView.reloadData()
                 self.refreshControl.endRefreshing()
@@ -92,7 +93,8 @@ class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         // Use the section number to get the right URL
         // let label = ...
         
-        let label: UILabel = UILabel(frame: CGRect(x: 60, y: 10, width: 320, height: 30))
+        let label: UILabel = UILabel(frame: CGRect(x: 60, y: 10, width: 200, height: 30))
+        let label2: UILabel = UILabel(frame: CGRect(x: 235, y:10, width: 200, height: 30))
         
         let query = PFUser.query()
         query?.getObjectInBackground(withId: posts[section].author.objectId!, block: { (user, error) in
@@ -104,8 +106,17 @@ class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         })
         
-        headerView.addSubview(label)
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        df.locale = Locale.current
         
+        print(df.string(from: posts[section].createdAt!))
+        label2.text = df.string(from: posts[section].createdAt!)
+        label.tag = 100
+        label2.tag = 101
+        headerView.addSubview(label)
+        headerView.addSubview(label2)
         
         return headerView
     }
@@ -116,6 +127,15 @@ class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return posts.count
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! DetailPostViewController
+        let senderCell = sender as! PostCell
+        let indexPath = postTableView.indexPath(for: senderCell)
+        let header = postTableView.headerView(forSection: (indexPath?.section)!)
+        header?.viewWithTag(100) as! UILabel
+        header?.viewWithTag(101) as! UILabel
     }
     
     /*
