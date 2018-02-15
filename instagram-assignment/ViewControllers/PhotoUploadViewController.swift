@@ -33,6 +33,12 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
         }
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        imageToUpload = #imageLiteral(resourceName: "image_placeholder")
+        photoToUploadImageView.image = imageToUpload
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
