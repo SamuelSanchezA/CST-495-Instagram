@@ -74,7 +74,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! DetailPostViewController
+        let senderCell = sender as! PhotoCell
+        let indexPath = userPostsCollectionView.indexPath(for: senderCell)
         
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        df.locale = Locale.current
+        
+        do{
+            let user = try self.userPosts[(indexPath?.row)!].author.fetch()
+            vc.authorName = user.username
+        }
+        catch{
+            
+        }
+        
+        vc.postDate = df.string(from: self.userPosts[(indexPath?.row)!].createdAt!)
+        print(self.userPosts[(indexPath?.row)!].media)
+        vc.imageFile = self.userPosts[(indexPath?.row)!].media
+        vc.postCaption = self.userPosts[(indexPath?.row)!].caption
     }
     
     /*

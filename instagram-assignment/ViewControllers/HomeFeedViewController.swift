@@ -149,17 +149,6 @@ class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableVi
             
         }
         
-//        self.posts[(indexPath?.section)!].author.fetchInBackground { (success, error) in
-//            if(success != nil){
-//                vc.authorName = (success as! PFUser).username
-//                print("Author: \(vc.authorName)")
-//            }
-//            else{
-//                print(error?.localizedDescription)
-//            }
-//        }
-        
-//        vc.authorName = self.posts[(indexPath?.section)!].author.username
         vc.postDate = df.string(from: self.posts[(indexPath?.section)!].createdAt!)
         print(self.posts[(indexPath?.section)!].media)
         vc.imageFile = self.posts[(indexPath?.section)!].media
