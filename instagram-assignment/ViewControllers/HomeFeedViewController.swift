@@ -113,8 +113,10 @@ class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         print(df.string(from: posts[section].createdAt!))
         label2.text = df.string(from: posts[section].createdAt!)
-        label.tag = 100
-        label2.tag = 101
+        label.accessibilityIdentifier = "user"
+        label2.accessibilityIdentifier = "date"
+        label.tag = 0xDEADBEEF
+        label2.tag = 0xDEADBEED
         headerView.addSubview(label)
         headerView.addSubview(label2)
         
@@ -133,9 +135,35 @@ class HomeFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         let vc = segue.destination as! DetailPostViewController
         let senderCell = sender as! PostCell
         let indexPath = postTableView.indexPath(for: senderCell)
-        let header = postTableView.headerView(forSection: (indexPath?.section)!)
-        header?.viewWithTag(100) as! UILabel
-        header?.viewWithTag(101) as! UILabel
+        
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        df.locale = Locale.current
+    
+        do{
+            let user = try self.posts[(indexPath?.section)!].author.fetch()
+            vc.authorName = user.username
+        }
+        catch{
+            
+        }
+        
+//        self.posts[(indexPath?.section)!].author.fetchInBackground { (success, error) in
+//            if(success != nil){
+//                vc.authorName = (success as! PFUser).username
+//                print("Author: \(vc.authorName)")
+//            }
+//            else{
+//                print(error?.localizedDescription)
+//            }
+//        }
+        
+//        vc.authorName = self.posts[(indexPath?.section)!].author.username
+        vc.postDate = df.string(from: self.posts[(indexPath?.section)!].createdAt!)
+        print(self.posts[(indexPath?.section)!].media)
+        vc.imageFile = self.posts[(indexPath?.section)!].media
+        vc.postCaption = self.posts[(indexPath?.section)!].caption
     }
     
     /*

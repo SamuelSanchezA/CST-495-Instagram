@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Profile"
         userPostsCollectionView.dataSource = self
         userPostsCollectionView.delegate = self
         let layout = userPostsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout

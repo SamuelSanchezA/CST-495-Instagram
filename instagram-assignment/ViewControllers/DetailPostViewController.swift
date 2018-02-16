@@ -7,12 +7,32 @@
 //
 
 import UIKit
+import ParseUI
 
 class DetailPostViewController: UIViewController {
 
+   
+    @IBOutlet weak var postCaptionLabel: UILabel!
+    @IBOutlet weak var postDateLabel: UILabel!
+    @IBOutlet weak var postAuthorLabel: UILabel!
+    @IBOutlet weak var profileImageView: PFImageView!
+    @IBOutlet weak var postImageView: PFImageView!
+    
+    var imageFile: PFFile!
+    var authorName: String!
+    var postDate: String!
+    var profileImage: PFFile!
+    var postCaption: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        postImageView.file = imageFile
+        postImageView.loadInBackground()
+        postAuthorLabel.text = authorName
+        postCaptionLabel.text = postCaption
+        postDateLabel.text = postDate
+        profileImageView.image = #imageLiteral(resourceName: "profile_tab")
+        
         // Do any additional setup after loading the view.
     }
 
