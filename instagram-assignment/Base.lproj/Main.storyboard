@@ -49,6 +49,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VzE-na-9MV">
                                 <rect key="frame" x="48" y="152" width="318" height="30"/>
                                 <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                         </subviews>
@@ -396,19 +397,10 @@
                                     <outletCollection property="gestureRecognizers" destination="rK3-tE-VeY" appends="YES" id="I21-xp-Ca5"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdE-ck-6kz">
-                                <rect key="frame" x="182" y="572" width="50" height="30"/>
-                                <state key="normal" title="Upload"/>
-                                <connections>
-                                    <action selector="uploadImage:" destination="9A1-jo-Cg9" eventType="touchUpInside" id="6NK-Kc-PHr"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="HdE-ck-6kz" firstAttribute="top" secondItem="ZlU-kF-d9Z" secondAttribute="bottom" constant="20" id="E4J-fM-lGR"/>
                             <constraint firstItem="hMv-kX-Pkg" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4g1-U0-Xq0" secondAttribute="trailing" constant="50" id="Vw8-Ld-9hp"/>
-                            <constraint firstItem="HdE-ck-6kz" firstAttribute="centerX" secondItem="4g1-U0-Xq0" secondAttribute="centerX" id="W16-eG-Fwl"/>
                             <constraint firstItem="ZlU-kF-d9Z" firstAttribute="centerX" secondItem="4g1-U0-Xq0" secondAttribute="centerX" id="WqF-q7-f3S"/>
                             <constraint firstItem="4g1-U0-Xq0" firstAttribute="top" secondItem="hMv-kX-Pkg" secondAttribute="top" constant="50" id="XEK-rw-Q2X"/>
                             <constraint firstItem="4g1-U0-Xq0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hMv-kX-Pkg" secondAttribute="leading" constant="50" id="dvc-Sn-yS7"/>
@@ -419,7 +411,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hMv-kX-Pkg"/>
                     </view>
-                    <navigationItem key="navigationItem" id="7L7-Du-qeF"/>
+                    <navigationItem key="navigationItem" id="7L7-Du-qeF">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="feL-eM-jgp">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HdE-ck-6kz">
+                                <rect key="frame" x="344" y="7" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Share"/>
+                                <connections>
+                                    <action selector="uploadImage:" destination="9A1-jo-Cg9" eventType="touchUpInside" id="6NK-Kc-PHr"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="captionTextView" destination="ZlU-kF-d9Z" id="QxQ-5e-7TB"/>
                         <outlet property="photoToUploadImageView" destination="4g1-U0-Xq0" id="u2c-VN-Ex3"/>

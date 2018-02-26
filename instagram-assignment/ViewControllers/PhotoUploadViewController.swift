@@ -81,7 +81,9 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
             (success, error) in
             if success{
                 print("Image upload successful!")
-                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabCont") as! UITabBarController
+                self.present(vc, animated: true, completion: nil)
             }
             else{
                 print(error?.localizedDescription)

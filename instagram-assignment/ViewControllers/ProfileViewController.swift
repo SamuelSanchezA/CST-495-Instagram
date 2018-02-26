@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Profile"
+        self.usernameLabel.text = PFUser.current()?.username
         userPostsCollectionView.dataSource = self
         userPostsCollectionView.delegate = self
         let layout = userPostsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -34,9 +35,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
 
     func fetchUserPosts(){
-        PFUser.getCurrentUserInBackground().continueOnSuccessWith { (user) -> Any? in
-            self.usernameLabel.text = user.result?.username
-        }
         let query = Post.query()
         query?.whereKey("author", equalTo: PFUser.current())
         query?.order(byDescending: "_created_at")
@@ -44,13 +42,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             if(posts != nil){
                 self.userPosts = posts as! [Post]
                 self.userPostsCollectionView.reloadData()
-                //self.refreshControl.endRefreshing()
             }
             else{
                 print(error?.localizedDescription)
             }
         })
-        
     }
     
     override func didReceiveMemoryWarning() {
